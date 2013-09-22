@@ -16,8 +16,12 @@ elseif($l[0] == $url['api-node']){
 
 /* --- Post Test --- */
 elseif($l[0] == $url['post-test-node']){
-	$api = true;
-	require'../content/post-test-form.php';
+	$content = 'post-test-form';
+}
+
+/* --- View --- */
+elseif($l[0] == $url['view-node']){
+	$content = 'viewer';
 }
 
 /* ----- Error ----- */

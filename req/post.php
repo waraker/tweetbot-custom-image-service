@@ -9,6 +9,10 @@ switch ($_POST['source']){
 		break;
 }
 
+$credentials = null;
+$service_provider = null;
+$twitter_response = null;
+
 $host = $_SERVER['SERVER_NAME'];
 
 require'../lib/pseudo-crypt.php';
@@ -18,10 +22,6 @@ if(POST_SYSTEM){
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 		if($origin == 'client'){
-
-			$credentials = null;
-			$service_provider = null;
-			$twitter_response = null;
 
 			if(isset($_SERVER['HTTP_X_VERIFY_CREDENTIALS_AUTHORIZATION'])) $credentials = $_SERVER['HTTP_X_VERIFY_CREDENTIALS_AUTHORIZATION'];
 			if(isset($_SERVER['HTTP_X_AUTH_SERVICE_PROVIDER'])) $service_provider = $_SERVER['HTTP_X_AUTH_SERVICE_PROVIDER'];
@@ -50,10 +50,6 @@ if(POST_SYSTEM){
 				$extension = pathinfo($_FILES['media']['name'], PATHINFO_EXTENSION);
 				copy($tmp_filepath, $uid.'.'.$extension);
 				unlink($tmp_filepath);
-
-				// Response
-				if($origin == 'client') echo'<mediaurl>http://'.$host.'/'.$uid.'.'.$extension.'</mediaurl>';
-				if($origin == 'form') echo'<img src="http://'.$host.'/'.$uid.'.'.$extension.'"><p><a href="http://'.$host.'/'.$uid.'.'.$extension.'">http://'.$host.'/'.$uid.'.'.$extension.'</a></p>';
 			}
 			else $error_message .= 'There was an error processing the file.';
 		}
@@ -75,6 +71,10 @@ if(POST_SYSTEM){
 
 			file_put_contents('../log/'.$datetime->format('ymd-Hi').'-'.$uid.'.'.$extension.'.log', $log);
 		}
+
+		// Response
+		if($origin == 'client') echo'<mediaurl>http://'.$host.'/'.$uid.'.'.$extension.'</mediaurl>';
+		if($origin == 'form') headerLocation($url['view-node'].'/?url='.urlencode('http://'.$host.'/'.$uid.'.'.$extension));
 	}
 }
 
