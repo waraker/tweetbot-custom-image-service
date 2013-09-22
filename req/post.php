@@ -51,7 +51,7 @@ if(POST_SYSTEM){
 				copy($tmp_filepath, $uid.'.'.$extension);
 				unlink($tmp_filepath);
 
-				// Respond
+				// Response
 				if($origin == 'client') echo'<mediaurl>http://'.$host.'/'.$uid.'.'.$extension.'</mediaurl>';
 				if($origin == 'form') echo'<img src="http://'.$host.'/'.$uid.'.'.$extension.'"><p><a href="http://'.$host.'/'.$uid.'.'.$extension.'">http://'.$host.'/'.$uid.'.'.$extension.'</a></p>';
 			}

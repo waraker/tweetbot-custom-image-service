@@ -7,6 +7,7 @@ require '../req/conf.php'
 <head>
 <meta charset="utf-8">
 <title>Post Test Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <form enctype="multipart/form-data" method="post" action="/<?php
