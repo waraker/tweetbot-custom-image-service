@@ -1,6 +1,8 @@
 <?php
 
-if(isset($_GET['url'])) $image_url = urldecode($_GET['url'])
+if(isset($_GET['url'])) $image_url = urldecode($_GET['url']);
+
+if(parse_url($image_url)['host'] == $_SERVER['SERVER_NAME']){
 
 ?>
 
@@ -22,4 +24,8 @@ echo $image_url;
 ?>"></a>
 
 </article>
-</section>
+</section><?php
+
+}
+
+?>
