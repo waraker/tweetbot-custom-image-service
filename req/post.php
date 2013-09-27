@@ -68,6 +68,7 @@ if(POST_SYSTEM){
 			if($service_provider) $log['HTTP_X_AUTH_SERVICE_PROVIDER'] = "HTTP_X_AUTH_SERVICE_PROVIDER: $service_provider\n";
 			if($twitter_response) $log['twitter_response'] = 'twitter_response: '.var_export($twitter_response, true)."\n";
 			if(isset($error_message)) $log['errors'] = 'errors: '.$error_message."\n";
+			$log['REMOTE_ADDR'] = 'REMOTE_ADDR: '.$_SERVER['REMOTE_ADDR'];
 
 			file_put_contents('../log/'.$datetime->format('ymd-Hi').'-'.$uid.'.'.$extension.'.log', $log);
 		}
