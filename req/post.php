@@ -48,7 +48,9 @@ if(POST_SYSTEM){
 
 			if(move_uploaded_file($_FILES['media']['tmp_name'], $tmp_filepath)){
 				$extension = pathinfo($_FILES['media']['name'], PATHINFO_EXTENSION);
-				copy($tmp_filepath, $uid.'.'.$extension);
+				$image_filename = $uid.'.'.$extension;
+				copy($tmp_filepath, $image_filename);
+				chmod($image_filename, UPLOADED_IMAGE_PERMISSIONS);
 				unlink($tmp_filepath);
 			}
 			else $error_message .= 'There was an error processing the file.';
@@ -70,12 +72,14 @@ if(POST_SYSTEM){
 			if(isset($error_message)) $log['errors'] = 'errors: '.$error_message."\n";
 			$log['REMOTE_ADDR'] = 'REMOTE_ADDR: '.$_SERVER['REMOTE_ADDR'];
 
-			file_put_contents('../log/'.$datetime->format('ymd-Hi').'-'.$uid.'.'.$extension.'.log', $log);
+			$log_filepath = '../log/'.$datetime->format('ymd-Hi').'-'.$image_filename.'.log';
+			file_put_contents($log_filepath, $log);
+			chmod($log_filepath, UPLOADED_IMAGE_PERMISSIONS);
 		}
 
 		// Response
-		if($origin == 'client') echo'<mediaurl>http://'.$host.'/'.$uid.'.'.$extension.'</mediaurl>';
-		if($origin == 'form') headerLocation($url['view-node'].'/?url='.urlencode('http://'.$host.'/'.$uid.'.'.$extension));
+		if($origin == 'client') echo'<mediaurl>http://'.$host.'/'.$image_filename.'</mediaurl>';
+		if($origin == 'form') headerLocation($url['view-node'].'/?url='.urlencode('http://'.$host.'/'.$image_filename));
 	}
 }
 
