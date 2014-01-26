@@ -1,31 +1,43 @@
 <?php
 
-if(isset($_GET['url'])) $image_url = urldecode($_GET['url']);
+$error_message = 'error';
 
-if(parse_url($image_url)['host'] == $_SERVER['SERVER_NAME']){
+if(filter_var($_GET['url'], FILTER_VALIDATE_URL)){
 
-?>
+	$image_url = $_GET['url'];
+	$url_data = parse_url($image_url);
+
+	// Only permit viewing of a local image
+	if($url_data['host'] == $_SERVER['SERVER_NAME']){
+
+		?>
 
 <section id="view">
 <article>
-<h1><?php
+<h1><a href="/<?php
 
-echo $image_url;
+		echo $image_url;
 
-?></h1>
-<a href="<?php
+		?>"><?php
 
-echo $image_url;
+		echo $image_url;
 
-?>"><img src="<?php
+		?></a></h1>
+<a href="/<?php
 
-echo $image_url;
+		echo $image_url;
 
-?>"></a>
+		?>"><img src="<?php
 
+		echo $image_url;
+
+		?>"></a>
 </article>
 </section><?php
 
+	}
+	else echo $error_message;
 }
+else echo $error_message;
 
 ?>
