@@ -15,6 +15,7 @@ if (filter_var($_GET['url'], FILTER_VALIDATE_URL)) {
 <h1><a href="<?php echo $image_url; ?>"><?php echo $image_url; ?></a></h1>
 <a href="<?php echo $image_url; ?>"><img src="<?php echo $image_url; ?>"></a>
 </article>
+<a href="/<?php echo $url['post-test-node']; ?>"><?php echo $url['post-test-node']; ?></a>
 </section><?php
 
 	}
