@@ -3,11 +3,11 @@
 ---
 
 
-## Features
+## Overview
 
 Enables the use of the custom image upload capabilities of Tweetbot on iOS and OS X: <a href="http://tapbots.net/tweetbot/custom_media/">http://tapbots.net/tweetbot/custom_media/</a>
 
-Utilises OAuth Echo outlined here: <a href="http://dev.twitter.com/pages/oauth_echo">http://dev.twitter.com/pages/oauth_echo</a>
+Utilises OAuth Echo outlined here: <a href="https://dev.twitter.com/oauth/echo">https://dev.twitter.com/oauth/echo</a>
 
 Additionally it can be used as a vanilla image upload service by using the test image post functionality.
 
@@ -19,7 +19,7 @@ Set your Tweetbot image upload service to custom and the API endpoint to `http:/
 Images attached to your tweets are returned to Tweetbot as four character base 62 alpha-numeric named files e.g. `http://yoursite.com/Z1h4.jpg`.
 
 
-## Testing
+## Testing image posting
 
 Use the form at `http://yoursite.com/post`.
 
