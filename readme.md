@@ -2,6 +2,11 @@
 
 ---
 
+## Update 2023
+
+Twitter suspended access to Tweetbot on 12.1.23. See: https://tapbots.com/tweetbot/
+
+
 ## Update 2022
 
 Tweetbot removed the custom image service in iOS version 6.
